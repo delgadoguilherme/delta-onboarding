@@ -1,0 +1,610 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #f2f2f7;
+  --text-primary: #1a1a1a;
+  --text-secondary: #8e8e93;
+  --text-tertiary: #c7c7cc;
+  --accent-green: #a8e025;
+  --accent-green-light: #b8f25c;
+  --btn-dark: #1c1c1e;
+  --white: #ffffff;
+  --border-color: #e5e5ea;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Device Frame */
+.device-frame {
+  width: 390px;
+  height: 844px;
+  background: var(--bg-color);
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 50px 100px -20px rgba(0,0,0,0.4),
+    0 30px 60px -30px rgba(0,0,0,0.5),
+    inset 0 0 0 10px #1a1a1a;
+}
+
+.screen-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ==========================================
+   FIXED PROGRESS BAR
+   ========================================== */
+.progress-bar-fixed {
+  position: absolute;
+  top: 70px;
+  left: 24px;
+  right: 24px;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.progress-bar-fixed.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.progress-track {
+  display: flex;
+  gap: 8px;
+  position: relative;
+}
+
+.progress-segment {
+  flex: 1;
+  height: 4px;
+  background: var(--text-tertiary);
+  border-radius: 2px;
+}
+
+/* The sliding indicator */
+.progress-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Width will be set by JS based on segment width */
+}
+
+/* ==========================================
+   SCREENS
+   ========================================== */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.screen.exiting {
+  opacity: 0;
+}
+
+.screen-content {
+  padding: 70px 24px 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content with progress bar needs extra top padding */
+.screen-content.has-progress {
+  padding-top: 110px;
+}
+
+/* ==========================================
+   WELCOME SCREEN
+   ========================================== */
+.welcome-screen {
+  justify-content: flex-start;
+  padding-top: 120px;
+  align-items: center;
+  text-align: center;
+}
+
+.welcome-logo-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logo-rings {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--text-tertiary);
+  border-radius: 24px;
+  opacity: 0;
+}
+
+.ring-1 { width: 110px; height: 110px; border-radius: 26px; }
+.ring-2 { width: 130px; height: 130px; border-radius: 30px; }
+.ring-3 { width: 150px; height: 150px; border-radius: 34px; }
+.ring-4 { width: 170px; height: 170px; border-radius: 38px; }
+
+.screen.active .ring {
+  animation: ringPulse 0.8s ease-out forwards;
+}
+
+.screen.active .ring-1 { animation-delay: 0.2s; }
+.screen.active .ring-2 { animation-delay: 0.35s; }
+.screen.active .ring-3 { animation-delay: 0.5s; }
+.screen.active .ring-4 { animation-delay: 0.65s; }
+
+@keyframes ringPulse {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.logo-icon {
+  width: 90px;
+  height: 90px;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.screen.active .logo-icon {
+  animation: logoAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+}
+
+@keyframes logoAppear {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.logo-icon svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 8px 24px rgba(168, 224, 37, 0.4));
+}
+
+.welcome-text {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.screen.active .welcome-text {
+  animation: fadeSlideUp 0.6s ease-out 0.4s forwards;
+}
+
+.welcome-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.welcome-subtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ==========================================
+   QUESTION SECTION
+   ========================================== */
+.question-section {
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.screen.active .question-section {
+  animation: fadeSlideFromRight 0.5s ease-out 0.1s forwards;
+}
+
+.question-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.question-subtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
+}
+
+/* ==========================================
+   PICKER
+   ========================================== */
+.picker-container {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.screen.active .picker-container {
+  animation: fadeSlideUp 0.5s ease-out 0.5s forwards;
+}
+
+.picker {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  padding: 0 20px;
+}
+
+.picker-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.picker-item {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-primary);
+  padding: 6px 12px;
+  transition: opacity 0.3s ease;
+}
+
+.picker-item.faded {
+  color: var(--text-tertiary);
+  font-size: 20px;
+}
+
+.picker-item.selected {
+  font-weight: 600;
+}
+
+.picker-item .value {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.picker-item .unit {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-left: 2px;
+}
+
+.picker-highlight {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 44px;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.03);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+/* ==========================================
+   CONFIRM SCREEN
+   ========================================== */
+.confirm-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.total-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 48px;
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.screen.active .total-time {
+  animation: fadeSlideFromRight 0.5s ease-out 0.1s forwards;
+}
+
+.time-display {
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.time-label {
+  font-size: 17px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.settings-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.screen.active .setting-item:nth-child(1) {
+  animation: fadeSlideFromRight 0.5s ease-out 0.2s forwards;
+}
+
+.screen.active .setting-item:nth-child(2) {
+  animation: fadeSlideFromRight 0.5s ease-out 0.28s forwards;
+}
+
+.screen.active .setting-item:nth-child(3) {
+  animation: fadeSlideFromRight 0.5s ease-out 0.36s forwards;
+}
+
+.setting-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--text-secondary);
+}
+
+.setting-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.setting-label {
+  font-size: 17px;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.setting-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent-green);
+  background: rgba(168, 224, 37, 0.15);
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+
+.setting-value-circle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent-green);
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--accent-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================
+   BOTTOM SECTION & BUTTONS
+   ========================================== */
+.bottom-section {
+  margin-top: auto;
+  padding-top: 20px;
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+/* Welcome screen - button comes from bottom */
+.welcome-screen .bottom-section {
+  transform: translateY(20px);
+}
+
+.screen.active .welcome-screen .bottom-section {
+  animation: fadeSlideUp 0.5s ease-out 0.5s forwards;
+}
+
+/* Onboarding screens - button comes from right */
+.screen-content.has-progress .bottom-section {
+  transform: translateX(40px);
+}
+
+.screen.active .screen-content.has-progress .bottom-section {
+  animation: fadeSlideFromRight 0.5s ease-out 0.2s forwards;
+}
+
+.btn {
+  width: 100%;
+  padding: 18px 32px;
+  border: none;
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-dark {
+  background: var(--btn-dark);
+  color: var(--white);
+}
+
+.btn-dark:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.btn-green {
+  background: linear-gradient(135deg, var(--accent-green-light) 0%, var(--accent-green) 100%);
+  color: var(--text-primary);
+}
+
+.btn-green:hover {
+  box-shadow: 0 8px 24px rgba(168, 224, 37, 0.4);
+}
+
+/* ==========================================
+   HOME INDICATOR
+   ========================================== */
+.home-indicator {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 134px;
+  height: 5px;
+  background: var(--text-primary);
+  border-radius: 3px;
+  opacity: 0.2;
+}
+
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Elements entering from the right */
+@keyframes fadeSlideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Screen content transitions */
+.screen-content.fade-out {
+  animation: contentFadeOut 0.3s ease-out forwards;
+}
+
+.screen-content.fade-in {
+  animation: contentFadeIn 0.4s ease-out forwards;
+}
+
+@keyframes contentFadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 430px) {
+  body {
+    padding: 0;
+    background: var(--bg-color);
+  }
+  
+  .device-frame {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

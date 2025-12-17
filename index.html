@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Delta - Onboarding Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="device-frame">
+    
+    <!-- Fixed Progress Bar (outside screens) -->
+    <div class="progress-bar-fixed" id="progressBar">
+      <div class="progress-track">
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+      </div>
+      <div class="progress-indicator" id="progressIndicator"></div>
+    </div>
+    
+    <div class="screen-container">
+      
+      <!-- Screen 0: Welcome -->
+      <div class="screen active" data-screen="0">
+        <div class="screen-content welcome-screen">
+          <div class="welcome-logo-container">
+            <div class="logo-rings">
+              <div class="ring ring-1"></div>
+              <div class="ring ring-2"></div>
+              <div class="ring ring-3"></div>
+              <div class="ring ring-4"></div>
+            </div>
+            <div class="logo-icon">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="100" rx="22" fill="url(#logoGradient)"/>
+                <path d="M50 25L30 45H42V55H30L50 75L70 55H58V45H70L50 25Z" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="2" stroke-linejoin="round"/>
+                <defs>
+                  <linearGradient id="logoGradient" x1="0" y1="0" x2="100" y2="100">
+                    <stop offset="0%" stop-color="#b8f25c"/>
+                    <stop offset="100%" stop-color="#8ce028"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+          
+          <div class="welcome-text">
+            <h1 class="welcome-title">Welcome to Delta</h1>
+            <p class="welcome-subtitle">High-intensity interval training<br>made simple</p>
+          </div>
+          
+          <div class="bottom-section">
+            <button class="btn btn-dark" onclick="nextScreen()">Get started</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 1: How many rounds -->
+      <div class="screen" data-screen="1">
+        <div class="screen-content has-progress">
+          <div class="question-section">
+            <h1 class="question-title">How many rounds your exercise has?</h1>
+            <p class="question-subtitle">Each round includes exercise + rest</p>
+          </div>
+          
+          <div class="picker-container">
+            <div class="picker">
+              <div class="picker-column">
+                <div class="picker-item faded">12</div>
+                <div class="picker-item faded">13</div>
+                <div class="picker-item faded">14</div>
+                <div class="picker-item selected"><span class="value">0</span> <span class="unit">hours</span></div>
+                <div class="picker-item faded">1</div>
+                <div class="picker-item faded">2</div>
+                <div class="picker-item faded">3</div>
+              </div>
+              <div class="picker-column">
+                <div class="picker-item faded">12</div>
+                <div class="picker-item faded">13</div>
+                <div class="picker-item faded">14</div>
+                <div class="picker-item selected"><span class="value">15</span> <span class="unit">min</span></div>
+                <div class="picker-item faded">16</div>
+                <div class="picker-item faded">17</div>
+                <div class="picker-item faded">18</div>
+              </div>
+              <div class="picker-column">
+                <div class="picker-item faded">12</div>
+                <div class="picker-item faded">13</div>
+                <div class="picker-item faded">14</div>
+                <div class="picker-item selected"><span class="value">0</span> <span class="unit">sec</span></div>
+                <div class="picker-item faded">1</div>
+                <div class="picker-item faded">2</div>
+                <div class="picker-item faded">3</div>
+              </div>
+              <div class="picker-highlight"></div>
+            </div>
+          </div>
+          
+          <div class="bottom-section">
+            <button class="btn btn-dark" onclick="nextScreen()">Continue</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 2: How long is each round -->
+      <div class="screen" data-screen="2">
+        <div class="screen-content has-progress">
+          <div class="question-section">
+            <h1 class="question-title">How long is each round?</h1>
+            <p class="question-subtitle">This is how long you'll work out before resting</p>
+          </div>
+          
+          <div class="picker-container">
+            <div class="picker">
+              <div class="picker-column">
+                <div class="picker-item faded">12</div>
+                <div class="picker-item faded">13</div>
+                <div class="picker-item faded">14</div>
+                <div class="picker-item selected"><span class="value">0</span> <span class="unit">hours</span></div>
+                <div class="picker-item faded">1</div>
+                <div class="picker-item faded">2</div>
+                <div class="picker-item faded">3</div>
+              </div>
+              <div class="picker-column">
+                <div class="picker-item faded">12</div>
+                <div class="picker-item faded">13</div>
+                <div class="picker-item faded">14</div>
+                <div class="picker-item selected"><span class="value">15</span> <span class="unit">min</span></div>
+                <div class="picker-item faded">16</div>
+                <div class="picker-item faded">17</div>
+                <div class="picker-item faded">18</div>
+              </div>
+              <div class="picker-column">
+                <div class="picker-item faded">12</div>
+                <div class="picker-item faded">13</div>
+                <div class="picker-item faded">14</div>
+                <div class="picker-item selected"><span class="value">0</span> <span class="unit">sec</span></div>
+                <div class="picker-item faded">1</div>
+                <div class="picker-item faded">2</div>
+                <div class="picker-item faded">3</div>
+              </div>
+              <div class="picker-highlight"></div>
+            </div>
+          </div>
+          
+          <div class="bottom-section">
+            <button class="btn btn-dark" onclick="nextScreen()">Continue</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 3: How long should the break be -->
+      <div class="screen" data-screen="3">
+        <div class="screen-content has-progress">
+          <div class="question-section">
+            <h1 class="question-title">How long should the break be?</h1>
+            <p class="question-subtitle">Time to recover between each round</p>
+          </div>
+          
+          <div class="picker-container">
+            <div class="picker">
+              <div class="picker-column">
+                <div class="picker-item faded">12</div>
+                <div class="picker-item faded">13</div>
+                <div class="picker-item faded">14</div>
+                <div class="picker-item selected"><span class="value">0</span> <span class="unit">hours</span></div>
+                <div class="picker-item faded">1</div>
+                <div class="picker-item faded">2</div>
+                <div class="picker-item faded">3</div>
+              </div>
+              <div class="picker-column">
+                <div class="picker-item faded">12</div>
+                <div class="picker-item faded">13</div>
+                <div class="picker-item faded">14</div>
+                <div class="picker-item selected"><span class="value">15</span> <span class="unit">min</span></div>
+                <div class="picker-item faded">16</div>
+                <div class="picker-item faded">17</div>
+                <div class="picker-item faded">18</div>
+              </div>
+              <div class="picker-column">
+                <div class="picker-item faded">12</div>
+                <div class="picker-item faded">13</div>
+                <div class="picker-item faded">14</div>
+                <div class="picker-item selected"><span class="value">0</span> <span class="unit">sec</span></div>
+                <div class="picker-item faded">1</div>
+                <div class="picker-item faded">2</div>
+                <div class="picker-item faded">3</div>
+              </div>
+              <div class="picker-highlight"></div>
+            </div>
+          </div>
+          
+          <div class="bottom-section">
+            <button class="btn btn-dark" onclick="nextScreen()">Continue</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 4: Confirm your settings -->
+      <div class="screen" data-screen="4">
+        <div class="screen-content has-progress">
+          <div class="question-section">
+            <h1 class="question-title">Confirm your settings</h1>
+            <p class="question-subtitle">You can adjust these anytime</p>
+          </div>
+          
+          <div class="confirm-content">
+            <div class="total-time">
+              <span class="time-display">1:00</span>
+              <span class="time-label">Total time</span>
+            </div>
+            
+            <div class="settings-list">
+              <div class="setting-item">
+                <div class="setting-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 4L7 12H11V20L17 12H13V4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="setting-label">Exercise</span>
+                <span class="setting-value">20 sec</span>
+              </div>
+              
+              <div class="setting-item">
+                <div class="setting-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </div>
+                <span class="setting-label">Rest</span>
+                <span class="setting-value">10 sec</span>
+              </div>
+              
+              <div class="setting-item">
+                <div class="setting-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 2L21 6L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 11V9C3 7.93913 3.42143 6.92172 4.17157 6.17157C4.92172 5.42143 5.93913 5 7 5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7 22L3 18L7 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 13V15C21 16.0609 20.5786 17.0783 19.8284 17.8284C19.0783 18.5786 18.0609 19 17 19H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="setting-label">Rounds</span>
+                <span class="setting-value-circle">8</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bottom-section">
+            <button class="btn btn-green" onclick="resetDemo()">Confirm</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <!-- Home Indicator -->
+    <div class="home-indicator"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
