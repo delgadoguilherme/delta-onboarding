@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hark - Document Extraction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="logo-text">Banker Interface</span>
+        </div>
+        <button class="sidebar-toggle">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <!-- Action Items -->
+        <a href="add-form-section.html" class="nav-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span>Add form section</span>
+        </a>
+        <a href="#" class="nav-item active">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 2V8H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Add document type</span>
+        </a>
+        
+        <!-- Form Sections -->
+        <div class="nav-section">
+          <span class="nav-section-title">Form sections</span>
+        </div>
+        <a href="#" class="nav-item nav-item-sub">Loan Application Details</a>
+        <a href="#" class="nav-item nav-item-sub">Applicant Details</a>
+        <a href="#" class="nav-item nav-item-sub">Employment</a>
+        <a href="#" class="nav-item nav-item-sub">Income</a>
+        <a href="#" class="nav-item nav-item-sub">Expenses</a>
+        
+        <!-- Documents -->
+        <div class="nav-section">
+          <span class="nav-section-title">Documents</span>
+        </div>
+        
+        <div class="nav-group collapsed">
+          <button class="nav-group-header">
+            <span>Passports</span>
+            <svg class="nav-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-group-items">
+            <a href="#" class="nav-item nav-item-nested">International Passport</a>
+          </div>
+        </div>
+        
+        <div class="nav-group collapsed">
+          <button class="nav-group-header">
+            <span>Driver's License</span>
+            <svg class="nav-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-group-items">
+            <a href="#" class="nav-item nav-item-nested">VIC Driver's Licence</a>
+            <a href="#" class="nav-item nav-item-nested">NSW Driver's Licence</a>
+            <a href="#" class="nav-item nav-item-nested">QLD Driver's Licence</a>
+          </div>
+        </div>
+        
+        <div class="nav-group collapsed">
+          <button class="nav-group-header">
+            <span>Payslips</span>
+            <svg class="nav-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-group-items">
+            <a href="#" class="nav-item nav-item-nested">Standard Payslip</a>
+            <a href="#" class="nav-item nav-item-nested">Government Payslip</a>
+            <a href="#" class="nav-item nav-item-nested">Contractor Payslip</a>
+          </div>
+        </div>
+        
+        <div class="nav-group collapsed">
+          <button class="nav-group-header">
+            <span>Rental Agreement</span>
+            <svg class="nav-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-group-items">
+            <a href="#" class="nav-item nav-item-nested">Residential Lease Agreement</a>
+            <a href="#" class="nav-item nav-item-nested">Commercial Lease Agreement</a>
+          </div>
+        </div>
+        
+        <!-- Settings -->
+        <div class="nav-section">
+          <span class="nav-section-title">Settings</span>
+        </div>
+        <a href="#" class="nav-item nav-item-sub">Global Settings</a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">M</div>
+          <span class="user-name">Michael D.</span>
+          <button class="user-menu">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="8" cy="3" r="1" fill="currentColor"/>
+              <circle cx="8" cy="8" r="1" fill="currentColor"/>
+              <circle cx="8" cy="13" r="1" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <div class="top-bar">
+        <div class="breadcrumb">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span>Schema Management</span>
+          <span class="breadcrumb-separator">›</span>
+          <span class="breadcrumb-current">Home Loan</span>
+        </div>
+      </div>
+      
+      <!-- Content Area - Split View -->
+      <div class="content-area content-area-full">
+        <div class="extraction-layout">
+          
+          <!-- Left Panel - Form Fields -->
+          <div class="extraction-panel extraction-fields">
+            <div class="page-header-simple">
+              <h1 class="page-title">Add Document Type</h1>
+              <p class="page-subtitle">Upload a document to automatically generate its extraction schema.</p>
+            </div>
+            
+            <!-- Document Name -->
+            <div class="form-group">
+              <label class="form-label">Document Name</label>
+              <input type="text" class="form-input" placeholder="Text" value="">
+            </div>
+            
+            <!-- Document Category -->
+            <div class="form-group">
+              <label class="form-label">Document Category</label>
+              <div class="combobox" id="categoryCombobox">
+                <input type="text" class="combobox-input" placeholder="Select an item" id="categoryInput">
+                <svg class="combobox-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="combobox-dropdown" id="categoryDropdown">
+                  <div class="combobox-option" data-value="Passports">Passports</div>
+                  <div class="combobox-option" data-value="Driver's License">Driver's License</div>
+                  <div class="combobox-option" data-value="Payslips">Payslips</div>
+                  <div class="combobox-option" data-value="Rental Agreement">Rental Agreement</div>
+                  <div class="combobox-create" id="createOption" style="display: none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Create "<span id="createText"></span>"</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Extracted Data Section -->
+            <div class="extracted-section">
+              <div class="extracted-header">
+                <h2 class="extracted-title">Extracted data</h2>
+                <button class="btn btn-secondary btn-sm">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  Add field
+                </button>
+              </div>
+              <p class="extracted-subtitle">Upload a document to automatically generate its extraction schema.</p>
+              
+              <!-- Field Cards -->
+              <div class="field-cards">
+                
+                <!-- Field 1: Employer Name -->
+                <div class="field-card expanded" data-highlight="highlight-employer-name,highlight-employer-name-header">
+                  <div class="field-card-header" onclick="toggleFieldCard(this)">
+                    <span class="field-card-title">Employer Name</span>
+                    <div class="field-card-actions">
+                      <button class="field-action-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3 6H21M19 6V20C19 21.1046 18.1046 22 17 22H7C5.89543 22 5 21.1046 5 20V6M8 6V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <svg class="field-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="field-card-body">
+                    <div class="form-group">
+                      <label class="form-label">Field Name</label>
+                      <input type="text" class="form-input" value="Employer Name">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Field Type</label>
+                      <select class="form-select">
+                        <option selected>Text</option>
+                        <option>Number</option>
+                        <option>Date</option>
+                        <option>Currency</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Description</label>
+                      <textarea class="form-textarea" placeholder="Describe the field clearly so the AI knows exactly what to look for and how to extract it.">The full legal name of the employer or company as stated in the contract parties section</textarea>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Field 2: Employer ABN -->
+                <div class="field-card" data-highlight="highlight-employer-abn,highlight-employer-abn-header">
+                  <div class="field-card-header" onclick="toggleFieldCard(this)">
+                    <span class="field-card-title">Employer ABN</span>
+                    <div class="field-card-actions">
+                      <button class="field-action-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3 6H21M19 6V20C19 21.1046 18.1046 22 17 22H7C5.89543 22 5 21.1046 5 20V6M8 6V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <svg class="field-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="field-card-body">
+                    <div class="form-group">
+                      <label class="form-label">Field Name</label>
+                      <input type="text" class="form-input" value="Employer ABN">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Field Type</label>
+                      <select class="form-select">
+                        <option selected>Text</option>
+                        <option>Number</option>
+                        <option>Date</option>
+                        <option>Currency</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Description</label>
+                      <textarea class="form-textarea" placeholder="Describe the field clearly so the AI knows exactly what to look for and how to extract it."></textarea>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right Panel - PDF Preview -->
+          <div class="extraction-panel extraction-preview">
+            <div class="pdf-preview-header">
+              <div class="pdf-file-info">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14 2V8H20" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="pdf-file-name">Contract (Liam).pdf</span>
+              </div>
+              <div class="pdf-actions">
+                <button class="pdf-action-btn" title="Print">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 9V2H18V9M6 18H4C2.89543 18 2 17.1046 2 16V11C2 9.89543 2.89543 9 4 9H20C21.1046 9 22 9.89543 22 11V16C22 17.1046 21.1046 18 20 18H18M6 14H18V22H6V14Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="pdf-action-btn" title="Download">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 15V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V15M7 10L12 15M12 15L17 10M12 15V3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <div class="pdf-preview-content">
+              <!-- Simulated PDF Document -->
+              <div class="pdf-document">
+                <div class="pdf-company-header">
+                  <div class="pdf-logo"><span class="pdf-highlight" id="highlight-employer-name-header">Tech Solutions Pty Ltd</span></div>
+                  <div class="pdf-address">Level 8, 345 George Street, Sydney, NSW 2000 | ABN: <span class="pdf-highlight" id="highlight-employer-abn-header">85 123 456 789</span></div>
+                </div>
+                
+                <h1 class="pdf-title">Contract of Employment</h1>
+                
+                <p class="pdf-date"><strong>DATE:</strong> 15 September 2025</p>
+                
+                <h2 class="pdf-section">Parties</h2>
+                <p class="pdf-text">This Contract of Employment is between:</p>
+                <p class="pdf-text pdf-highlight-wrapper">
+                  <span class="pdf-highlight" id="highlight-employer-name"><strong>Tech Solutions Pty Ltd</strong></span> (the "Employer")
+                </p>
+                <p class="pdf-text">AND</p>
+                <p class="pdf-text"><strong>Liam Anderson</strong> (the "Employee")</p>
+                
+                <h2 class="pdf-section">1. Position</h2>
+                <p class="pdf-text">1.1. The Employee is appointed to the full-time position of <strong>Senior Software Engineer</strong></p>
+                <p class="pdf-text">1.2. The Employee will report to the Head of Engineering or as otherwise directed by the Employer.</p>
+                
+                <h2 class="pdf-section">2. Commencement</h2>
+                <p class="pdf-text">2.1. The employment will commence on <strong>1 October 2025</strong>.</p>
+                <p class="pdf-text">2.2. A probationary period of six (6) months applies from the commencement date.</p>
+                
+                <h2 class="pdf-section">3. Remuneration</h2>
+                <p class="pdf-text">3.1. The Employee's total remuneration package will be <strong>$156,000.00 AUD per annum</strong> (gross).</p>
+                <p class="pdf-text">3.2. This equates to a gross monthly salary of <strong>$13,000.00 AUD</strong>, payable fortnightly in arrears by direct deposit.</p>
+                <p class="pdf-text">3.3. The salary will be reviewed annually.</p>
+                
+                <h2 class="pdf-section">4. Superannuation</h2>
+                <p class="pdf-text">4.1. The Employer will make superannuation contributions on behalf of the Employee in accordance with the Superannuation Guarantee (Administration) Act 1992. As of the date of this contract, the rate is 11.5% of ordinary time earnings.</p>
+                
+                <h2 class="pdf-section">5. Hours of Work</h2>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Bottom Bar -->
+      <div class="bottom-bar">
+        <button class="btn btn-primary btn-confirm" onclick="confirmNewDocument()">Confirm New Document</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Toggle field card expand/collapse
+    function toggleFieldCard(header) {
+      const card = header.closest('.field-card');
+      const isExpanding = !card.classList.contains('expanded');
+      
+      // Close all other cards first
+      const allCards = document.querySelectorAll('.field-card');
+      allCards.forEach(otherCard => {
+        if (otherCard !== card && otherCard.classList.contains('expanded')) {
+          otherCard.classList.remove('expanded');
+          // Remove highlights from other card
+          const otherHighlightId = otherCard.dataset.highlight;
+          if (otherHighlightId) {
+            otherHighlightId.split(',').forEach(id => {
+              const highlight = document.getElementById(id.trim());
+              if (highlight) highlight.classList.remove('active');
+            });
+          }
+        }
+      });
+      
+      // Toggle current card
+      card.classList.toggle('expanded');
+      
+      // Update highlight
+      const highlightId = card.dataset.highlight;
+      if (highlightId) {
+        const highlightIds = highlightId.split(',');
+        highlightIds.forEach(id => {
+          const highlight = document.getElementById(id.trim());
+          if (highlight) {
+            if (card.classList.contains('expanded')) {
+              highlight.classList.add('active');
+            } else {
+              highlight.classList.remove('active');
+            }
+          }
+        });
+      }
+    }
+    
+    // Initialize highlights for expanded cards
+    function initHighlights() {
+      const expandedCards = document.querySelectorAll('.field-card.expanded');
+      expandedCards.forEach(card => {
+        const highlightId = card.dataset.highlight;
+        if (highlightId) {
+          // Handle multiple highlights (comma-separated)
+          const highlightIds = highlightId.split(',');
+          highlightIds.forEach(id => {
+            const highlight = document.getElementById(id.trim());
+            if (highlight) {
+              highlight.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      initNavGroups();
+      initCombobox();
+      initHighlights();
+    });
+    
+    // Confirm new document - add to sidebar
+    function confirmNewDocument() {
+      const categoryInput = document.getElementById('categoryInput');
+      const documentNameInput = document.querySelector('.form-input[placeholder="Text"]');
+      
+      const categoryName = categoryInput.value.trim() || 'New Category';
+      const documentName = documentNameInput.value.trim() || 'New Document';
+      
+      // Save to localStorage
+      saveDocumentToStorage(categoryName, documentName);
+      
+      // Add to sidebar
+      addDocumentToSidebar(categoryName, documentName);
+      
+      // Show success feedback
+      showToast(documentName, categoryName, 'Created');
+      
+      // Redirect to add-document page after toast
+      setTimeout(() => {
+        window.location.href = 'add-document.html';
+      }, 1500);
+    }
+    
+    // Save document to localStorage
+    function saveDocumentToStorage(categoryName, docName) {
+      let docs = JSON.parse(localStorage.getItem('harkDocuments') || '[]');
+      
+      // Check if category exists
+      let categoryIndex = docs.findIndex(d => d.category === categoryName);
+      
+      if (categoryIndex >= 0) {
+        // Add document to existing category
+        if (!docs[categoryIndex].items.includes(docName)) {
+          docs[categoryIndex].items.push(docName);
+        }
+      } else {
+        // Create new category
+        docs.push({
+          category: categoryName,
+          items: [docName]
+        });
+      }
+      
+      localStorage.setItem('harkDocuments', JSON.stringify(docs));
+    }
+    
+    // Add document to sidebar
+    function addDocumentToSidebar(categoryName, docName) {
+      const navGroups = window.document.querySelectorAll('.nav-group');
+      const lastGroup = navGroups[navGroups.length - 1];
+      
+      // Check if category already exists in sidebar
+      const existingGroup = Array.from(navGroups).find(g => 
+        g.querySelector('.nav-group-header span')?.textContent === categoryName
+      );
+      
+      if (existingGroup) {
+        // Add item to existing group
+        const items = existingGroup.querySelector('.nav-group-items');
+        const newItem = window.document.createElement('a');
+        newItem.href = '#';
+        newItem.className = 'nav-item nav-item-nested';
+        newItem.textContent = docName;
+        items.appendChild(newItem);
+      } else {
+        // Create new group
+        const newGroup = window.document.createElement('div');
+        newGroup.className = 'nav-group';
+        newGroup.innerHTML = `
+          <button class="nav-group-header">
+            <span>${categoryName}</span>
+            <svg class="nav-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-group-items">
+            <a href="#" class="nav-item nav-item-nested">${docName}</a>
+          </div>
+        `;
+        
+        lastGroup.parentNode.insertBefore(newGroup, lastGroup.nextSibling);
+        
+        // Re-init nav groups for the new one
+        const newHeader = newGroup.querySelector('.nav-group-header');
+        newHeader.addEventListener('click', () => {
+          newGroup.classList.toggle('collapsed');
+        });
+      }
+    }
+    
+    // Toast notification
+    function showToast(title, subtitle, label) {
+      // Remove existing toast
+      const existingToast = document.querySelector('.toast');
+      if (existingToast) existingToast.remove();
+      
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <div class="toast-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 2"/>
+            <path d="M14 2V8H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 2"/>
+          </svg>
+        </div>
+        <div class="toast-content">
+          <div class="toast-title">${title}</div>
+          <div class="toast-subtitle">${subtitle}</div>
+        </div>
+        <div class="toast-label">${label}</div>
+      `;
+      document.body.appendChild(toast);
+      
+      // Animate in
+      setTimeout(() => toast.classList.add('show'), 10);
+      
+      // Remove after 3s
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+    
+    // Combobox functionality
+    function initCombobox() {
+      const combobox = document.getElementById('categoryCombobox');
+      const input = document.getElementById('categoryInput');
+      const dropdown = document.getElementById('categoryDropdown');
+      const options = dropdown.querySelectorAll('.combobox-option');
+      const createOption = document.getElementById('createOption');
+      const createText = document.getElementById('createText');
+      
+      const defaultOptions = ['Passports', "Driver's License", 'Payslips', 'Rental Agreement'];
+      
+      // Toggle dropdown on input focus
+      input.addEventListener('focus', () => {
+        combobox.classList.add('open');
+        filterOptions('');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!combobox.contains(e.target)) {
+          combobox.classList.remove('open');
+        }
+      });
+      
+      // Filter options on input
+      input.addEventListener('input', (e) => {
+        const value = e.target.value.toLowerCase().trim();
+        filterOptions(value);
+      });
+      
+      function filterOptions(searchValue) {
+        let hasMatch = false;
+        let exactMatch = false;
+        
+        options.forEach(option => {
+          const text = option.dataset.value.toLowerCase();
+          if (searchValue === '' || text.includes(searchValue)) {
+            option.classList.remove('hidden');
+            hasMatch = true;
+            if (text === searchValue) {
+              exactMatch = true;
+            }
+          } else {
+            option.classList.add('hidden');
+          }
+        });
+        
+        // Show create option if no exact match and there's input
+        if (searchValue && !exactMatch) {
+          createOption.style.display = 'flex';
+          createText.textContent = input.value;
+        } else {
+          createOption.style.display = 'none';
+        }
+      }
+      
+      // Select option
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          input.value = option.dataset.value;
+          combobox.classList.remove('open');
+        });
+      });
+      
+      // Create new option
+      createOption.addEventListener('click', () => {
+        const newValue = input.value.trim();
+        if (newValue) {
+          // Add new option to dropdown
+          const newOption = document.createElement('div');
+          newOption.className = 'combobox-option';
+          newOption.dataset.value = newValue;
+          newOption.textContent = newValue;
+          newOption.addEventListener('click', () => {
+            input.value = newOption.dataset.value;
+            combobox.classList.remove('open');
+          });
+          dropdown.insertBefore(newOption, createOption);
+          
+          combobox.classList.remove('open');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
